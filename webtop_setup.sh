@@ -7,10 +7,17 @@ sudo timedatectl set-timezone America/New_York
 #allow insecure repos
 sudo echo 'APT::Get::AllowUnauthenticated "true";' | sudo tee /etc/apt/apt.conf.d/99allow-insecure
 
-# Check and switch to zsh
-if [ "$SHELL" != "/usr/bin/zsh" ]; then
-  sudo chsh -s /usr/bin/zsh $USER
-fi
+# Path to the zsh executable
+ZSH_PATH=$(which zsh)
+
+# Check each user's default shell and change it to Zsh if it's not already Zsh
+while IFS=: read -r username _ _ _ _ _ shell
+do
+    if [ "$shell" != "$ZSH_PATH" ] && [ ! -z "$shell" ]; then
+        echo "Changing shell for $username to $ZSH_PATH"
+        sudo chsh -s "$ZSH_PATH" "$username"
+    fi
+done < /etc/passwd
 
 # Install Alacritty
 sudo add-apt-repository ppa:mmstick76/alacritty
@@ -21,7 +28,8 @@ sudo apt install -y alacritty
 url="https://raw.githubusercontent.com/dan4222/aclarity/main/alacritty.yml"
 
 # Define the destination where you want to place the file
-destination=" ~/.config/alacritty/alacritty.yml"
+sudo mkdir -p ~/.config/alacritty/
+destination=" ~/.config/alacritty/"
 
 # Use curl to download the file and place it in the destination
 curl -L $url -o $destination
@@ -56,4 +64,4 @@ curl -o ~/.tmux.conf https://raw.githubusercontent.com/josean-dev/dev-environmen
 source ~/.zshrc
 
 # logout and login to apply changes
-qdbus org.kde.ksmserver /KSMServer logout 0 0 0
+#qdbus org.kde.ksmserver /KSMServer logout 0 0 0
