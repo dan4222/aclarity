@@ -19,12 +19,26 @@ do
     fi
 done < /etc/passwd
 
-# Install Alacritty
-sudo add-apt-repository ppa:mmstick76/alacritty
-sudo apt install -y alacritty
+# Install prerequisites for compiling Alacritty
+sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3 desktop-file-utils
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source ~/.zshrc
+. "$HOME/.cargo/env"
 
-# Move the Alacritty configuration
-sudo mkdir -p ~/.config/alacritty/
+# Clone and compile Alacritty
+git clone https://github.com/alacritty/alacritty.git
+cd alacritty
+cargo build --release
+
+# Install Alacritty
+sudo cp target/release/alacritty /usr/local/bin
+sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+sudo desktop-file-install extra/linux/Alacritty.desktop
+sudo update-desktop-database
+cd ..
+
+# Create Alacritty configuration directory and file
+mkdir -p ~/.config/alacritty
 sudo mv alacritty.toml ~/.config/alacritty/
 
 # Use curl to download the file and place it in the destination
