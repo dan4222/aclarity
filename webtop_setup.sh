@@ -4,6 +4,9 @@ sudo apt-get install net-tools ssh iputils-ping nano wget unzip software-propert
 service ssh restart
 timedatectl set-timezone America/New_York
 
+#allow insecure repos
+echo 'APT::Get::AllowUnauthenticated "true";' | sudo tee /etc/apt/apt.conf.d/99allow-insecure
+
 # Check and switch to zsh
 if [ "$SHELL" != "/usr/bin/zsh" ]; then
   sudo chsh -s /usr/bin/zsh $USER
