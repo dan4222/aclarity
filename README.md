@@ -33,5 +33,6 @@ The webtop_setup.sh script performs the following configurations:
 - Clones and sets up Zsh plugins: zsh-autosuggestions and zsh-syntax-highlighting.
 - Installs and configures exa and zoxide.
 - Installs and configures tmux.
-- Alacritty Configuration
-- The alacritty.toml file contains configurations for Alacritty terminal emulator. It sets the terminal environment, window properties, font size, and other settings.
+
+## Alacritty Configuration
+The alacritty.toml file contains configurations for Alacritty terminal emulator. It sets the terminal environment, window properties, font size, and other settings.
