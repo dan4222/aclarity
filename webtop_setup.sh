@@ -41,10 +41,6 @@ cd ..
 mkdir -p ~/.config/alacritty
 sudo mv alacritty.toml ~/.config/alacritty/
 
-# Use curl to download the file and place it in the destination
-curl -L $url -o $destination
-
-
 # Install Nerd Fonts
 git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
 cd nerd-fonts
