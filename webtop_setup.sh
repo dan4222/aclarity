@@ -23,13 +23,9 @@ done < /etc/passwd
 sudo add-apt-repository ppa:mmstick76/alacritty
 sudo apt install -y alacritty
 
-# Set up Alacritty configuration
-# Define the URL of the alacritty.yml file in the repository
-url="https://raw.githubusercontent.com/dan4222/aclarity/main/alacritty.yml"
-
-# Define the destination where you want to place the file
+# Move the Alacritty configuration
 sudo mkdir -p ~/.config/alacritty/
-destination=" ~/.config/alacritty/"
+sudo mv alacritty.toml ~/.config/alacritty/
 
 # Use curl to download the file and place it in the destination
 curl -L $url -o $destination
