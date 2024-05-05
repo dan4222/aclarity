@@ -1,13 +1,13 @@
 #!/bin/bash
+sudo apt-get update && apt-get upgrade -y
+sudo apt-get install net-tools ssh iputils-ping nano wget unzip software-properties-common curl git zsh -y
+service ssh restart
+timedatectl set-timezone America/New_York
 
 # Check and switch to zsh
 if [ "$SHELL" != "/usr/bin/zsh" ]; then
   sudo chsh -s /usr/bin/zsh $USER
 fi
-
-# Install prerequisites
-sudo apt update
-sudo apt install -y curl git zsh
 
 # Install Alacritty
 sudo add-apt-repository ppa:mmstick76/alacritty
