@@ -14,28 +14,15 @@ sudo add-apt-repository ppa:mmstick76/alacritty
 sudo apt install -y alacritty
 
 # Set up Alacritty configuration
-mkdir -p ~/.config/alacritty
-echo "creating Alacritty config"
-cat << EOF > ~/.config/alacritty/alacritty.yml
-# Alacritty Configuration
+# Define the URL of the alacritty.yml file in the repository
+url="https://raw.githubusercontent.com/dan4222/aclarity/main/alacritty.yml"
 
-[env]
-TERM = "xterm-256color"
+# Define the destination where you want to place the file
+destination=" ~/.config/alacritty/alacritty.yml"
 
-[window]
-padding:
-  x: 10
-  y: 10
-decorations: "Buttonless"
-opacity: 0.7
-blur: true
-option_as_alt: "Both"
+# Use curl to download the file and place it in the destination
+curl -L $url -o $destination
 
-[font]
-normal:
-  family: "MesloLGS Nerd Font Mono"
-size: 14
-EOF
 
 # Install Nerd Fonts
 git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
