@@ -1,11 +1,11 @@
 #!/bin/bash
-sudo apt-get update && apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install net-tools ssh iputils-ping nano wget unzip software-properties-common curl git zsh -y
-service ssh restart
-timedatectl set-timezone America/New_York
+sudo service ssh restart
+sudo timedatectl set-timezone America/New_York
 
 #allow insecure repos
-echo 'APT::Get::AllowUnauthenticated "true";' | sudo tee /etc/apt/apt.conf.d/99allow-insecure
+sudo echo 'APT::Get::AllowUnauthenticated "true";' | sudo tee /etc/apt/apt.conf.d/99allow-insecure
 
 # Check and switch to zsh
 if [ "$SHELL" != "/usr/bin/zsh" ]; then
