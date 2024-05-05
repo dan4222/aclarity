@@ -64,3 +64,6 @@ curl -o ~/.tmux.conf https://raw.githubusercontent.com/josean-dev/dev-environmen
 
 # Source zshrc to apply changes
 source ~/.zshrc
+
+# logout and login to apply changes
+qdbus org.kde.ksmserver /KSMServer logout 0 0 0
